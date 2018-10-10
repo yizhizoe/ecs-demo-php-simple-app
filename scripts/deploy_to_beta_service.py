@@ -12,12 +12,13 @@ import json
 import boto3
 import os
 
-ecs_client = boto3.client('ecs')
-
 ALB_NAME = 'ecs-demo-php-simple-app'
 ECS_CLUSTER_NAME = 'ecs-bg-DeploymentPipeline-YM8402EZ4FKO-ecs-cluster'
 REPO_URI = '697505841960.dkr.ecr.us-east-1.amazonaws.com/ecs-b-repos-15b3rkey5rakv'
 FAMILY = 'simple-app'
+REGION = 'us-east-1'
+ecs_client = boto3.client('ecs', region_name=REGION)
+
 
 def get_beta_service(elbname=ALB_NAME,
                      ecs_cluster_name=ECS_CLUSTER_NAME
@@ -31,7 +32,7 @@ def get_beta_service(elbname=ALB_NAME,
                 Exception: Any exception thrown by handler
 
     """
-    elbclient = boto3.client('elbv2')
+    elbclient = boto3.client('elbv2', region_name=REGION)
 
     try:
 
