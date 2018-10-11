@@ -61,7 +61,6 @@ def get_beta_service(elbname=ALB_NAME,
 
     for service in ecs_service_details['services']:
         if 'loadBalancers' in service:
-            print(service)
             albs = service['loadBalancers']
             for alb in albs:
                 if 'targetGroupArn' in alb and \
