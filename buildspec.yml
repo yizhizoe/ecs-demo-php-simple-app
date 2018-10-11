@@ -11,7 +11,7 @@ phases:
         - echo -n "$BUILD_TAG" > /tmp/build_id.out
         - printf "%s:%s" "$REPOSITORY_URI" "$(cat /tmp/build_id.out)" > /tmp/build_tag.out
         - printf '{"tag":"%s"}' "$(cat /tmp/build_id.out)" > /tmp/build.json
-        - $(aws ecr get-login)
+        - $(aws ecr get-login --no-include-email)
     build:
       commands:
         - docker build --tag "$(cat /tmp/build_tag.out)" .
