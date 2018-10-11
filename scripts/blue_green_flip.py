@@ -5,9 +5,9 @@ import boto3
 import sys
 import traceback
 
-elbclient = boto3.client('elbv2')
 ALB_NAME = 'ecs-demo-php-simple-app'
 REGION = 'us-east-1'
+elbclient = boto3.client('elbv2', region_name=REGION)
 
 def swaptargetgroups(elbname):
     """Discovers the live target group and non-production target group and swaps
