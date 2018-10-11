@@ -7,6 +7,7 @@ import traceback
 
 elbclient = boto3.client('elbv2')
 ALB_NAME = 'ecs-demo-php-simple-app'
+REGION = 'us-east-1'
 
 def swaptargetgroups(elbname):
     """Discovers the live target group and non-production target group and swaps
@@ -22,12 +23,8 @@ def swaptargetgroups(elbname):
 
     listners = elbclient.describe_listeners(LoadBalancerArn=elbresponse['LoadBalancers'][0]['LoadBalancerArn'])
     for x in listners['Listeners']:
-        if (x['Port'] == 443):
-            livelistenerarn = x['ListenerArn']
         if (x['Port'] == 80):
             livelistenerarn = x['ListenerArn']
-        if (x['Port'] == 8443):
-            betalistenerarn = x['ListenerArn']
         if (x['Port'] == 8080):
             betalistenerarn = x['ListenerArn']
 
