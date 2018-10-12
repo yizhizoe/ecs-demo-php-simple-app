@@ -55,7 +55,7 @@ def swaptargetgroups(elbname):
         ]
     )
 
-    print(modifyOnBeta)
+    print("Switched rule for beta to target group: {}".format(livetargetgroup))
 
     modifyOnLive = elbclient.modify_rule(
         RuleArn=liverulearn,
@@ -67,7 +67,8 @@ def swaptargetgroups(elbname):
         ]
     )
 
-    print(modifyOnLive)
+    print("Switched rule for production to target group: {}".format(betatargetgroup))
+
     modify_tags(livetargetgroup,"IsProduction","False")
     modify_tags(betatargetgroup, "IsProduction", "True")
 
