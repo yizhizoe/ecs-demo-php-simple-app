@@ -3,6 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
+      - pip install requests
       - pip install pytest
   build:
     commands:
